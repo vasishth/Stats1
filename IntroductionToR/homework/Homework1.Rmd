@@ -1,0 +1,150 @@
+---
+title: "Homework 1"
+output:
+  pdf_document: default
+params: 
+  answers: FALSE
+  
+---
+
+```{r, setup, include=FALSE, eval=TRUE}
+knitr::opts_chunk$set(
+  include=params$answers
+)
+```
+
+1. Create a new Rmarkdown file, and save it with the name YourLastNameHW1.Rmd. Save it in an appropriate directory you have created and make sure that your R session in RStudio is in the same directory where the Rmarkdown file is located. 
+Not done here.
+
+a) In the header of the Rmarkdown file, write your name instead of "null" (currently, it says: **author: "null"**).
+
+b) Check your working directory by using the function that we saw in the lecture. 
+```{r}
+getwd()
+```
+
+
+2. Calculate the square root of 50 and round it up. 
+```{r}
+round(sqrt(50))
+```
+
+3. Create a new vector with numbers from 1 to 80 and find out which class the object belongs to. 
+```{r}
+object <- 1:80
+class(object)
+```
+
+4. Create a new vector with numbers from 0 to 100 in a step size of ten (0,10,20,.. etc) and find out its length. 
+```{r}
+numbers <- seq(0,100,10)
+length(numbers)
+```
+
+5. Create a new vector named **food** containing the name of any three dishes or types of food.
+```{r}
+food <- c("pasta","salad","pizza")
+```
+
+6. Create a vector containing the numbers 80 to 1 (so, 80, 79,...,1).
+```{r}
+vec<-80:1
+```
+
+7. What is the difference between installing a package and loading the package using the function `library`?
+
+Installing a package means that you install a particular package on your computer; this is done only once, on the command line or using the menu. Loading a package is done within an R script or Rmarkdown document using the library function; one has to load the package whenever one needs the functionality of that package in the script/Rmarkdown document being prepared. 
+
+8. Create a vector with numbers from 30 to 100 and a) compute the mean and the standard deviation, b) subset the elements in the position 1, 10, and 100; c) Why do you get NA (not available) with position 100? 
+```{r}
+vector <- 30:100
+mean(vector)
+sd(vector)
+vector[c(1,10,100)]
+# We get NA with position 100 because there are only 70 elements in the vector. 
+```
+
+9. Compute the log of the previous vector, and store the result in a new vector named "vector_log".
+```{r}
+vector_log <- log(vector)
+```
+
+10. Now exponentiate the new vector. 
+```{r}
+exp(vector_log)
+```
+
+11. Create a vector by repeating the integers ranging from 1 to 5 three times. So, what you want is 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5.
+
+```{r}
+vector2<-rep(1:5, times = 3)
+```
+
+12. Create a vector by repeating the numbers 1 to 5 three times EACH. So, here, what you want is 1 1 1 2 2 2 3 3 3 4 4 4 5 5 5.
+```{r}
+vector3<- rep(1:5, each=3)
+```
+
+13. Now create a new vector that contains a) the numbers 1 to 10 two times, and b) the numbers 1 to 10 two times each (tip: Use the "c" function).
+```{r}
+(vector4<-c(rep(1:10, times=2),rep(1:10, each=2)))
+```
+
+
+14. Create a vector that contains a) a sequence of numbers from 0 to 100 by 20 (i.e., 0, 20, 40...) and b) the numbers 0 to 5 repeated 3 times. 
+```{r}
+(vector5<-c(seq(0,100,20),rep(1:5, each=3)))
+```
+
+
+15. Take the mean of the previous vector and round it to 2 decimals. 
+```{r}
+mean(vector5)
+round(mean(vector5),2)
+```
+
+16. Create a vector with numbers 1 to 5 as CHARACTER. Check the class and length of the object. Then transform the vector of class character to class numeric. 
+
+```{r}
+vector6 <- c("1","2","3","4","5")
+class(vector6)
+length(vector6)
+vector6 <- as.numeric(vector6)
+class(vector6)
+```
+
+17. Create two numerical vectors of length 4. Then multiply these two vectors.
+```{r}
+vector7 <- 1:4
+vector8 <- 5:8
+vector7*vector8
+```
+
+18. Create a vector that contains a sequence going from -10 to 0. 
+```{r}
+vector9 <- -10:0
+min(vector9)
+max(vector9)
+```
+
+19. Create a vector of length 20 and subset the elements in positions 1,3,5,8, 9. 
+```{r}
+vector7 <- 1:4
+vector8 <- 5:8
+vector7*vector8
+```
+
+20. Create a vector of length 10 and subset
+ 
+a) all elements except the last one
+b) all elements except the first one
+b) all elements except the elements in positions 2,4,6
+
+```{r}
+vector11<-1:10
+length(vector11)
+vector11[-10]
+vector11[-1]
+vector11[-(c(2,4,6))]
+```
+

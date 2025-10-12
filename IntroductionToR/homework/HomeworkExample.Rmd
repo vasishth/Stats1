@@ -1,0 +1,14 @@
+---
+title: "Homework 2"
+output: pdf_document
+---
+
+1. Create a vector of numbers from 1 to 10
+```{r}
+myvector <- 1:10 
+```
+
+2. What does the function library() do?
+
+It loads packages. 
+

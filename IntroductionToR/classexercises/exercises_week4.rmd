@@ -1,0 +1,203 @@
+---
+title: "Exercises sheet 4"
+author: "Johan Hennert"
+date: "`r Sys.Date()`"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+# Exercise 1
+## 1.1
+Open `exp_data.txt` in a text editor and answer the following questions:
+
+- What symbol is used to separate columns? _";"_
+- Is there a header? _Yes!_
+
+## 1.2
+Load the data in `exp_data` using either the `read.table` or the `read.csv` function and save it in `dat`.
+```{r}
+dat <- read.table("exp_data.txt", sep=";", header=TRUE)
+```
+
+
+
+## 1.3
+How many columns are there in `dat`? How many rows?
+```{r}
+ncol(dat)
+nrow(dat)
+```
+
+
+
+## 1.4
+Use the `str` function to find the structure of `dat`. Of what types are the different columns?
+```{r}
+str(dat)
+```
+
+
+## 1.5
+Of what types _should_ the `subject` and `condition` columns be? Why?
+_They should be of type `factor`, as they do not represent numbers, but labels for each person and each column._
+
+Convert them to this type!
+```{r}
+dat$subj <- as.factor(dat$subj)
+dat$condition <- as.factor(dat$condition)
+```
+
+
+
+## 1.6
+Add a new column `log_rt` containing the log-transformed reading times.
+```{r}
+dat$log_rt <- log(dat$rt)
+```
+
+
+
+# Exercise 2
+## 2.1
+Try creating some vector `a` and then executing
+```{r echo=TRUE, eval=FALSE}
+b <- a
+a == b
+```
+Doing this, we get an entire vector of `TRUE`, which means that we get the element-wise comparison of all the elements.
+
+There are however times when we only want a single `TRUE` if all element-wise comparisons are `TRUE` and `FALSE` if at least one pair of elements is different.
+
+Write this as a function `equal.vectors` which takes in two vectors `a` and `b` and returns `TRUE` if all corresponding elements in `a` and in `b` are equal and `FALSE` otherwise!
+
+_Hint:_ One way of checking if all values are `TRUE` in the comparison vector is by using the opposite comparison (`a != b`) with the `which` function. If the result is of length 0, all values are `TRUE` in the vector `a == b`.
+```{r}
+equal.vectors <- function(a,b) {
+  if (length(which(a != b)) == 0) {
+    return(TRUE)
+  } else {
+    return(FALSE)
+  }
+}
+```
+
+
+
+## 2.2
+This operation is only meaningful if the length of the two vectors are the same. Extend the function by checking if the length of `a` and `b` are the same. If this is not the case, output a warning message with the function `warning` and return `NA`.
+```{r}
+equal.vectors <- function(a,b) {
+  if (length(a) != length(b)) {
+    warning("a and b have to be of the same length!")
+    return(NA)
+  }
+  
+  if (length(which(a != b)) == 0) {
+    return(TRUE)
+  } else {
+    return(FALSE)
+  }
+}
+```
+
+
+
+## 2.3
+Try the function out with some vectors that you know are equal, some that you know are not equal, and some that are of different lengths!
+```{r}
+a <- 1:3
+b <- a
+equal.vectors(a, b)
+
+b <- 4:6
+equal.vectors(a, b)
+
+a <- c(1,2)
+b <- c(1,2,3)
+equal.vectors(a, b)
+```
+
+
+
+# Exercise 3
+## 3.1
+Implement the `max` function, which takes in a vector `x` and finds the largest element in it.
+
+To do this, first initialise a variable `max_value` with `-Inf`.
+Then, iterate over each value in `x` and check if the value is greater than `max_value`. If so, change `max_value` to this value and carry on the loop. At the end, outside of the loop, return `max_value`.
+
+Call the function `my_max` to avoid naming conflicts.
+```{r}
+my_max <- function(x) {
+  max_value <- -Inf
+  for (val in x) {
+    if (val > max_value) {
+      max_value <- val
+    }
+  }
+  
+  return(max_value)
+}
+```
+
+
+
+## 3.2
+Try using `my_max` with the vector `vec`. What happens?
+```{r eval = FALSE}
+vec <- c(1,5,7,2,NA,9)
+```
+
+```{r eval = FALSE}
+my_max(vec)
+```
+```
+Error in if (val > max_value) { : missing value where TRUE/FALSE needed
+```
+
+
+Try solving this by\ldots
+
+- simply ignoring the `NA` values (that is, skipping the round when the value is `NA`).
+```{r}
+my_max <- function(x) {
+  max_value <- -Inf
+  for (val in x) {
+    if (is.na(val)) {
+      next
+    }
+
+    if (val > max_value) {
+      max_value <- val
+    }
+  }
+  
+  return(max_value)
+}
+```
+
+
+- giving an error message with `stop` when encountering an `NA` value.
+```{r}
+my_max <- function(x) {
+  max_value <- -Inf
+  for (val in x) {
+    if (is.na(val)) {
+      stop("encountered NA value!")
+    }
+
+    if (val > max_value) {
+      max_value <- val
+    }
+  }
+  
+  return(max_value)
+}
+```
+
+
+_Hint:_ You can use `is.na` to check if a value is `NA`.
+

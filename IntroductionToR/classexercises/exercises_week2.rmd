@@ -1,0 +1,59 @@
+---
+title: "Exercise sheet 2"
+date: "2023-11-08"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Exercise 1
+1. Create a vector `vec` containing _each_ of
+numbers of the sequence from 22 to 35 (in steps of 3) 4 times!
+
+2. Print the length of `vec` in the format "vec has length LENGTH" using the `length` and `paste` functions. _Tip:_ Use the `?` function and Google first if you can't remember how to use `paste`.
+
+3. Create another vector `vec2` of length 5 using any of the functions from the lecture.
+
+4. Add `vec` and `vec2`. What happens?
+_Tip:_ Look at which numbers have been added together!
+
+5. What happens if the vectors are of different lengths?
+
+## Exercise 2
+1. Print out the 1st, 5th and 8th elements of `vec`.
+
+2. Print out all elements of `vec` _except_ for elements 1, 5 and 8.
+
+3. Using the `which` function, find the indices of all elements...
+  - ...larger than 25.
+  - ...smaller than 28 but larger than 22. _Tip:_ Combine conditions using the `&` (logical AND) operator!
+  - ...which are divisible by 3. _Tip:_ A value `x` is divisible by `a` if `x %% a == 0`.
+
+## Exercise 3
+1. Create a new vector `log_vec` containing the values of `vec` after applying the `log` function.
+
+2. Round `log_vec`...
+  - ...down.
+  - ...up.
+  - ...to 2 digits.
+  
+3. What are the largest and smallest values of `log_vec`?
+
+4. Use the equivalence operator `==` to compare `exp(log_vec)` to `vec`. What is printed out?
+
+## Exercise 4
+1. Create a new vector `vec3` containing all whole numbers from 1 to 500.
+
+2. Use the `sample` function to draw 50 random numbers from `vec3` and save the result in a new vector `data`. You can pick yourself if you want to draw with or without replacement!
+_Tip:_ Use the `?` function and Google to find out how `sample` works!
+An example use: 
+```{r eval = FALSE}
+candies <- c("licorice", "fudge", "gummy bears", "chocolate")
+data <- sample(candies, 20, replace = FALSE)
+```
+
+3. Calculate the mean of `data`.
+
+4. Calculate the standard deviation of `data`.

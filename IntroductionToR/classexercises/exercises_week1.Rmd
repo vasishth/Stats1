@@ -1,0 +1,56 @@
+---
+title: "Exercises"
+author: "Introduction to statistical data analysis (Stats 1)"
+date: "2024-10-15"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Exercise 1
+
+## Create and save an RMarkdown file
+
+Create an RMarkdown file and remove the default content (starting from the section header "RMarkdown" down). For the exercises, use headers and subheaders to distinguish between them. Save the file in some appropriate directory, using an appropriate file name (the extension must be .Rmd).
+
+## Create a section and a subsection
+
+Create a section called Self-introduction. In this section, write three or four sentences introducing yourself, providing the following information.
+
+- Your name (in bold face--google how to write in bold face in R Markdown)
+- Your first university degree (in italics--google how to do this)
+- Which country are you from
+- The Masters program you are enrolled in currently
+
+Create a subsection called Interests. In this subsection write down what topics interest you in your field of study.
+
+## Writing R code chunks
+
+Add an R code chunk into the R Markdown file that contains the vector 1 2 3 4 5 6 7 8 9 10. Print out the vector.
+
+## A code chunk that does a numerical calculation
+
+Create another R code chunk in the R Markdown file. This time, have the code calculate the result of the following expression: 
+$$
+(33+98)\times\frac{670-30}{32^2\times 57}
+$$
+
+## Compute the absolute value of a number
+
+Calculate the absolute value of $-{25}$ using R.
+
+*Tip:* Google "how to calculate absolute value in R"!
+
+# Exercise 2
+
+## Create a character string
+
+Create a code chunk that generates a character string with five elements: the first five letters of the alphabet. Save this character verctor as `my_string` (or choose some other name). Use the relevant R command to find out what type  `my_string` is.
+
+## Printing output using variables
+
+Create two variables, `age` and `name`, containing your age and your name, respectively. Use the `paste` function to combine these values into a string of the shape "Hello, my name is NAME and I am AGE years old.". Save this result in a new variable and then output the result.
+
+*Tip:* Use the `?` function in RStudio, and Google to find out how `paste` works!
