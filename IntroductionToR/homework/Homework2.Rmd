@@ -12,168 +12,68 @@ knitr::opts_chunk$set(
 )
 ```
 
-1. Make sure to include your name in the file. 
+1. Make sure to include your name in the file header, and in the filename. 
+
 2. Imagine a factor that contains "categories" **c,a,z,s**.
 
-  - How many levels does this factor have? Answer: 4. 
+  - How many levels does this factor have?
   - Make an object of class factor named **f** containing the **c,a,z,s** (as factor!).
-```{r}
-f <- as.factor(c("c","a","z","s"))
-```
   - Now make an object of class character named **c** that contains the same letters.
-```{r}
-c <- c("c","a","z","s")
-```
-  
-  - Have a look at the two objects. Why is the order different in the levels of **f** in comparison with **c**? Answer: because factor levels are ordered alphabetically. 
+  - Have a look at the two objects. Why is the order different in the levels of **f** in comparison with **c**? 
   - Change the levels of the factor **f** so that the order is **c,a,z,s**.
-```{r}
-f <- factor(f, levels=c("c","a","z","s","p"))
-levels(f)
-```
 
 3. Create a for loop for a range between 1 and 8, it has to print each element of the range + 5.  
-```{r}
-for (i in 1:8){
-  print(i +5)
-}
-```
 
 4. Use one of the two functions in R that help you find out what these two functions do: cbind() rbind()
-```{r, eval=FALSE}
-?cbind
-help(rbind)
-```
 
 5. Create a new vector containing the name of 3 of your friends.
-```{r}
-names <- c("Mary", "John", "Joe")
-```
 
 6. Create another vector containing their ages.
-```{r}
-age <- c(28,32,34)
-```
 
 7. Join the two previous vectors and create a new object named "friends1". Do that by using the correct function: cbind or rbind? 
-```{r}
-friends1 <- cbind(names,age)
-```
 
 8. Now create a new object named "friends2" with the vectors from ex. 5 and 6 but this time use the function data.frame() and give names to your columns, i.e., "names" and "age".
-```{r}
-friends2 <- data.frame(age=age, names=names)
-```
 
 9. Change the class of the second column of friends2 to **factor**. 
-```{r}
-friends2$names <- as.factor(friends2$names)
-```
 
-10. Which is the difference between a matrix and a data frame?
-A matrix can only contain one type of data, whereas dataframes can combine multiple types of data. 
+10. What is one big difference between a matrix and a data frame?
 
 11. With the variables created below, type the code to find out whether: a is greater or equal than c; b is equal to a; c is less than b. Is c smaller than b? why? (hint: check the class of the variables)
 ```{r}
 a <- 20
 b <- "20"
 c <- 10
-
-a >= c
-b == a
-c < b
 ```
-Object b is of class character. It should be converted to numeric if we want to use logical operations properly. 
 
-12. **If statements:** create a variable 'x' and assign the value '6' to it. Then create an if statement: If x is equal or bigger than 0, create a new variable called 'y' that is equal to 'x' multiplied by 10 (and print y). Else, the variable 'y' will be equal to x multiplied by 5 (and print y). Then run the code. 
-```{r}
-x <- 6
-if (x >= 0){
-  y <- x*10
-  print(y)
-}else{
-  y <- x*5
-  print(y)
-}
-```
+12. **If statements:** create a variable 'x' and assign the value '6' to it. Then create an if statement as follows: If x is equal or bigger than 0, create a new variable called 'y' that is equal to 'x' multiplied by 10 (and print y). Else, the variable 'y' should be equal to x multiplied by 5 (and print y). Then run the code. 
 
 13. 
 a) Create a data frame with two columns. The first column, named condition, has 10 observations corresponding to condition **a**. The second column, called group, contains two factors: L1 and L2. The group column contains 10 observations, 10 for each group
 
-```{r}
-mydata <- data.frame(condition=rep(c("a","b"),each=5),
-                     group=rep(c("L1","L2"),5))
-```
 
 b) add a new column called grp_contrast. If the column group has value L1, the column grp_contrast should have -1, otherwise 1. Use the ifelse function. 
 
-```{r}
-mydata$grp_contrast <- ifelse(mydata$group=="L1",-1,1)
-```
-
 c) add a new column called grp_cond1. If condition is a and group is L1, values of grp_cond1 should be 1, otherwise 0 (hint: the ifelse expression can be as long as needed; you can add more than one condition by joining them using logical operators).
 
-```{r}
-mydata$grp_cond1 <- ifelse(mydata$group=="L1" & mydata$condition=="a",1,0)
-```
 
 c) add a new column called grp_cond2. If condition is not a and group is not L1, values of grp_cond1 should be 1, otherwise 0. 
 
-```{r}
-mydata$grp_cond2 <- ifelse(mydata$group!="L1" & mydata$condition!="a",1,0)
-```
 
 d) add a new column called grp_cnd3. If condition is a or b, and group is L2, values of grp_cnd3 should be 1, otherwise 0. (Use the logical operators discussed in class.)
 
-```{r}
-mydata$grp_cond3 <- ifelse(mydata$group=="L2" & mydata$condition=="a"|
-                             mydata$group=="L2" & mydata$condition=="b",1,0)
-```
 
 e) print the content of the data frame to check that you did the previous exercises correclty. 
-```{r}
-print(mydata)
-```
 
 14. 
 a) Using the previous data frame, create a new data frame that contains only the observations corresponding to the L1 group.
 
-```{r}
-mydata2 <- droplevels(subset(mydata,group=="L1"))
-```
 
-b) create a new column called RT that contains data points drawn from a lognormal distribution with location 6 and scale 1. (hint: rlnorm). Remember that the number of data points needs to be the same as the number of observations (or rows) in the data frame. 
-```{r}
-mydata2$RT <- rlnorm(nrow(mydata2),6,1)
-```
+b) create a new column called RT that contains data points drawn from a lognormal distribution with location 6 and scale 1. (hint: use the function rlnorm). Remember that the number of data points needs to be the same as the number of observations (or rows) in the data frame. 
 
 c) Compute the mean and the sd of the RT column, and round it up. 
 
-```{r}
-mean(mydata2$RT)
-```
-
-```{r}
-sd(mydata2$RT)
-```
 
 d) change all the column names to whatever names you like. 
-```{r}
-colnames(mydata2) <- c("col1", "col2", "col3", "col4","col5", "col6")
-```
 
 
 15. In the range 1 to N, where N=100, sample 50 data points from a normal distribution with mean 40 and sd 10. Then take the mean of each sampled distribution, and store it in a previously created vector with length equal to N (see the slides for an example of this). Finally, print the content of the vector, which should contain 100 means.
-
-```{r}
-N <- 100
-sample.means <- rep(NA,N)
-
-for(i in 1:N){
-sample.50 <- rnorm(50,mean=40,sd=10)
-sample.means[i] <- mean(sample.50)
-}
-
-print(sample.means)
-```
-
