@@ -1,108 +1,45 @@
 ---
 title: "Homework 3"
-date: "11/21/2020"
+date: "Nov 2025"
 output: pdf_document
-params: 
-  answers: TRUE
 ---
-
-```{r, setup, include=FALSE}
-knitr::opts_chunk$set(
-  include=params$answers
-)
-```
 
 1. Run the following command on the R command line to download the data-set (careful when you copy and paste the link!):
 
+\tiny
+```{r eval=FALSE}
 download.file("https://raw.githubusercontent.com/vasishth/Freq_CogSci/master/data/grodnergibsonE1crit.txt",destfile = "dat.txt")
-
-The data will be in your working directory with the name "dat.txt". Then use the appropriate command to load the data into R. Remember that you need to be in the correct working directory for R to find the file. 
-
-
-```{r}
-data <- read.table("dat.txt", header=T)
 ```
+
+\normalsize
+
+The data will be in your working directory with the name "dat.txt". Then use an  appropriate command to load the data into R. Remember that you need to be in the correct working directory for R to find the file. 
+
 
 2. Find out the number of columns, the name of the columns and the number of rows using the relevant R functions. 
-```{r}
-ncol(data)
-colnames(data)
-nrow(data)
-```
 
 3. What's the class of the column "subject"?
-```{r}
-class(data$subject) # integer
-```
 
-4. Convert the columns "subject" and "item" to factor. 
-```{r}
-data$subject <- as.factor(data$subject)
-data$item <- as.factor(data$item)
-```
+4. Convert the columns "subject" and "item" to type factor. 
 
-5. How many subjects are there? and items?
-```{r}
-length(unique(data$subject))
-length(unique(data$item))
-```
+5. How many subjects are there? How many items?
 
 6. How many instances of each condition does each subject see? 
-Answer: There are only two conditions, and there are 16 items, assuming that the experiment is balanced, there would be 8 items per condition. We can check this with xtabs: 
-```{r}
-data$condition <- as.factor(data$condition)
-xtabs(~ condition + subject,data=data)
-```
 
 7. Compute the mean reading time and sd in objgap and in subjgap. 
-```{r}
-tapply(data$rawRT, data$condition, mean)
-tapply(data$rawRT, data$condition, sd)
-```
 
 8. Remove all reading times higher than 5000 ms and smaller than 200 ms. Make sure that you did this correctly by computing the minimum and maximum values of the reading times. 
-```{r}
-data <- subset(data, rawRT>200 & rawRT<5000)
-min(data$rawRT)
-max(data$rawRT)
-```
 
 9. Log-transform the rawRT observations (in a new column called logRT).
-```{r}
-data$logRT <- log(data$rawRT)
-```
 
 10. Created a new column that contains -1 for subjgap observations, and 1 for objgap observations. 
-```{r}
-data$contrasts <- ifelse(data$condition=="subjgap", -1,1)
-```
 
 10. Create two new dataframes, one for the condition objgap and another one for the condition subjgap. 
-```{r}
-subjgap <- droplevels(subset(data, condition=="subjgap"))
-objgap <- droplevels(subset(data, condition=="objgap"))
-```
 
 
 11. Create a user-defined function that takes as an argument a vector of numbers. Call this argument "numbers". The function has to calculate an return the mean of the numbers. DO NOT use the function mean(). Instead, you should add up all of the numbers of the vector and divide this by the length of the vector. You can use the functions sum() and length().
 
-```{r}
-compute.mean <- function(numbers){
-  length <- length(numbers)
-  mean <- sum(numbers)/length
-  return(mean)
-}
-```
-
 11. Use your function to calculate the mean of the rawRT column in the dataframes objgap and subjgap that you created in question 9. 
-```{r}
-compute.mean(numbers=objgap$rawRT)
-compute.mean(numbers=subjgap$rawRT)
-```
 
 12. Plot a histogram of the rawRT in objgap and in subjgap. 
-```{r}
-hist(objgap$rawRT,breaks=30)
-hist(subjgap$rawRT,breaks=30)
-```
 
