@@ -1,7 +1,7 @@
 ---
 title: "Exercise sheet 3"
-author: "Johan Hennert"
-date: "2023-11-15"
+author: "Johan Hennert and Shravan Vasishth"
+date: "Nov 2025"
 output: pdf_document
 ---
 

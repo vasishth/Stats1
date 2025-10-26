@@ -1,6 +1,6 @@
 ---
 title: "Exercise sheet 2"
-date: "2023-11-08"
+date: "Nov 2025"
 output: pdf_document
 ---
 
@@ -46,14 +46,14 @@ _Tip:_ Look at which numbers have been added together!
 ## Exercise 4
 1. Create a new vector `vec3` containing all whole numbers from 1 to 500.
 
-2. Use the `sample` function to draw 50 random numbers from `vec3` and save the result in a new vector `data`. You can pick yourself if you want to draw with or without replacement!
+2. Use the `sample` function to draw 50 random numbers from `vec3` and save the result in a new vector `dat`. You can pick yourself if you want to draw with or without replacement!
 _Tip:_ Use the `?` function and Google to find out how `sample` works!
 An example use: 
 ```{r eval = FALSE}
 candies <- c("licorice", "fudge", "gummy bears", "chocolate")
-data <- sample(candies, 20, replace = FALSE)
+dat <- sample(candies, 20, replace = FALSE)
 ```
 
-3. Calculate the mean of `data`.
+3. Calculate the mean of `dat`.
 
-4. Calculate the standard deviation of `data`.
+4. Calculate the standard deviation of `dat`.

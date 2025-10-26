@@ -1,6 +1,6 @@
 ---
 title: "Exercises sheet 4"
-author: "Johan Hennert"
+author: "Johan Hennert and Shravan Vasishth"
 date: "`r Sys.Date()`"
 output: pdf_document
 ---
